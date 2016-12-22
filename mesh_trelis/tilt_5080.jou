@@ -1,0 +1,247 @@
+reset
+brick x 800000 y 800000 z 160000
+volume 1 move x 0 y 0 z -80000
+brick x 600000 y 600000 z 120000
+volume 2 move x 0 y 0 z -60000
+webcut body 1 tool body 2
+delete body 2
+create planar surface with plane zplane offset -50000
+surface 25 name "moho_interface"
+webcut volume 1 3 with plane moho_interface
+imprint body all
+merge body all
+
+
+create vertex location 0   0   0
+create vertex location 300000 47515.332  0
+create vertex location 0   0   -30000
+create planar surface with plane vertex 65 vertex 66 vertex 67 intersecting body 3
+webcut volume 3 with plane surface 56
+
+create planar surface with plane vertex 65 vertex 66 vertex 67 intersecting body 3
+rotate Surface 67 angle 15 about Z include_merged 
+body 9 move -80000  0  0
+rotate Surface 67 angle -60  about vertex 82 83 include_merged 
+create sheet extended from surface 67  extended percentage 10 
+webcut body 3 8  with sheet surface 68
+unite body 3 8 
+unite body 11 12
+
+brick x 600000 y 1 z 100000
+body 13 move 0 0 -50000
+rotate body 13 angle 24  about Z include_merged 
+body 13 move -80000  0  0
+rotate volume 13 angle 60 about vertex 106 107 include_merged
+
+#delete body 4 7 9 10 
+delete vertex 65 66 67
+create planar surface with plane yplane offset 0 
+rotate Surface 95 angle -60  about Z include_merged
+body 14 move -100000 0  0 
+webcut body 13 with sheet surface 95
+################################################
+###    change here
+#####################################
+body 14 move  -100000  0  0
+webcut body 15 with sheet surface 95
+delete body 13  16
+
+
+create planar surface with plane zplane offset -5000 
+create planar surface with plane zplane offset -30000 
+webcut body 15 with sheet surface 116
+delete body 15
+webcut body 19 with sheet surface 117
+delete body 20
+
+delete body  7 9 10 14  17 18
+
+######################################################
+create sphere radius 56666 znegative
+create sheet offset from surface 138  offset -26666
+webcut body 21 with plane from surface 140
+delete volume 21 
+delete body 22     #
+move Volume 23 x -120000 y -20000 z -23334 include_merged
+intersect body 23 6 keep
+subtract body 24 from body 6 keep
+delete volume 23   6         #
+##############################################################
+
+delete body 4
+
+#create sheet extended from surface 56 extended percentage 20 
+#webcut body 13 with sheet surface 95 
+#
+#
+#brick x 40000 y 1 z 60000
+#rotate Volume 16 angle -36  about Z include_merged
+#
+#webcut body 16 with sheet surface 95
+#delete body 16 13 
+#delete body 4 7 14
+#intersect body 15 17 keep
+#delete body 15 17 
+#delete vertex 65 66 67
+#
+#brick x 303908 y 1 z 50000
+#rotate volume 9 angle 9 about z include_merged
+###create surface rectangle width 303908 height 50000 yplane
+###rotate surface 67 angle 9 about z include_merged
+#volume 9 move x 0 y 0 z -30000
+###move surface 67 location 0 0 -30000 include_merged
+#
+#brick x 303908 y 1 z 60000
+#rotate volume 10 angle 9 about z include_merged
+###create surface rectangle width 303908 height 60000 yplane
+###rotate surface 68 angle 9 about z include_merged
+#intersect body 9 10 keep
+#delete body 9
+#delete body 10
+
+#volume 11 name "fault"
+#volume 1 name "basement1"
+#volume 3 name "basement2"
+#volume 8 name "basement3"
+#volume 5 name "mantle1"
+#volume 6 name "mantle2"
+
+#delete vertex 65 66 67
+#delete body 4 7
+#
+#brick x 303908 y 1 z 50000
+#rotate volume 12 angle 24 about z include_merged
+###create surface rectangle width 303908 height 50000 yplane
+###rotate surface 70 angle 24 about z include_merged
+###move surface 70 location -77510 0 0 include_merged
+###move surface 70 location -77510 0 -30000
+#
+#volume 12 move x -77510 0 0 
+#volume 12 move x 0 y 0 z -30000
+#
+#
+#brick x 303908 y 1 z 100000
+#rotate volume 13 angle 24 about z include_merged
+#volume 13 move x -77510 0 0 
+###create surface rectangle width 303908 height 70000 yplane
+###rotate surface 71 angle 24 about z include_merged
+###move surface 71 location -77510 0 0 include_merged
+#
+#intersect body 12 13 keep
+#delete body 12 13
+#
+#create sheet extended from surface 82 extended percentage 10
+#webcut body 14 with sheet surface 103
+#delete body 16
+#delete body 15 
+#create sheet extended from surface 106 extended percentage 10 
+#webcut body 11 with sheet surface 114
+###webcut body 11 with sheet surface 74
+#
+#create sheet extended from surface 124 extended percentage 10 
+#
+#webcut body 14  with sheet surface 125
+#
+#delete body 11  14
+###create sheet extended from surface 79 extended percentage 10 
+#
+#webcut body 3 8  with sheet surface 114
+#unite body 3   21   8
+#delete body 19 17
+#unite body 18 20
+###composite create surface 77 79 keep angle 15
+#
+###composite create surface 91 97 keep angle 15
+#
+
+imprint body all 
+merge body all 
+delete volume 19
+
+#composite create surface 164 165 166 keep angle 15 
+#imprint body all 
+#merge body all group_results
+
+volume all scheme Tetmesh
+set tetmesher interior points on 
+set tetmesher optimize level 3 overconstrained  off sliver  off 
+set tetmesher boundary recovery  off 
+volume all tetmesh growth_factor 1
+mesh volume all
+
+##refine surface 163 164 162 165 166  numsplit 1 bias 1.0 depth 1 smooth
+##refine surface 163 164 162 165 166  numsplit 1 bias 1.0 depth 1 smooth
+refine surface 160 161   numsplit 2 bias 1.0 depth 1 smooth
+
+
+
+
+# ----------------------------------------------------------------------
+# Create blocks for materials
+# ----------------------------------------------------------------------
+block 1 volume 1 3 11
+block 1 name "basement"
+block 2 volume 5 25
+block 2 name "mantle"
+block 3 volume 24
+block 3 name "low"
+# ----------------------------------------------------------------------
+# Create nodeset for fault
+# ----------------------------------------------------------------------
+group "fault" add node in surface 161
+nodeset 10 fault
+nodeset 10 name "fault"
+group "fault_edge" add node in curve 283
+group "fault_edge" add node in curve 284	
+group "fault_edge" add node in curve 285
+group "fault_edge" add node in curve 286
+
+nodeset 11 fault_edge
+nodeset 11 name "fault_edge"
+# ----------------------------------------------------------------------
+# Create nodeset for +x face
+# ----------------------------------------------------------------------
+group "face_xpos" add node in surface 34 38
+nodeset 12 face_xpos
+nodeset 12 name "face_xpos"
+# ----------------------------------------------------------------------
+# Create nodeset for -x face
+# ----------------------------------------------------------------------
+group "face_xneg" add node in surface 42 30
+nodeset 13 face_xneg
+nodeset 13 name "face_xneg"
+# ----------------------------------------------------------------------
+# Create nodeset for +y face
+# ----------------------------------------------------------------------
+group "face_ypos" add node in surface 29 43
+nodeset 14 face_ypos
+nodeset 14 name "face_ypos"
+# ----------------------------------------------------------------------
+# Create nodeset for -y face
+# ----------------------------------------------------------------------
+group "face_yneg" add node in surface 39 33
+nodeset 15 face_yneg
+nodeset 15 name "face_yneg"
+# ----------------------------------------------------------------------
+# Create nodeset for -z face
+# ----------------------------------------------------------------------
+group "face_zneg" add node in surface 2
+nodeset 16 face_zneg
+nodeset 16 name "face_zneg"
+# ----------------------------------------------------------------------
+# Create nodeset for +z face
+# ----------------------------------------------------------------------
+group "face_zpos" add node in surface 18 73 76
+nodeset 17 face_zpos
+nodeset 17 name "face_zpos"
+
+export mesh "ETliuchunyu_buried_tilt_5080km.exo" dimension 3 overwrite
+
+
+
+
+
+
+
+
+
