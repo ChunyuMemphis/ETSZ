@@ -1,0 +1,37 @@
+// -*- C++ -*- (tell Emacs to use C++ mode for syntax highlighting)
+//
+// This spatial database specifies the initial stresses for the model
+// The stresses increase linearly with depth.
+//
+#SPATIAL.ascii 1
+SimpleDB {
+  num-values = 2 // number of stress components
+
+  // names of the fault coeffients
+  value-names = friction-coefficient cohesion
+
+  value-units = None MPa  // units
+
+  num-locs = 7
+  data-dim = 1
+  space-dim = 3
+
+  cs-data = cartesian {
+    to-meters = 1.0
+    space-dim = 3
+  }
+}
+// Columns are
+// (1) x coordinates(m)
+// (2) y coordinates(m)
+// (3) z coordinates(m)
+// (4) friction_coefficient
+// (5) cohension(Pa)
+
+0     0     0        0.2      0
+0     0     -5000    0.2      0
+0     0     -12000   0.2      0
+0     0     -12001   0.2      0
+0     0     -15000   0.2      0
+0     0     -20000   0.2      0
+0     0     -30000   0.2      0

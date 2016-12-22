@@ -1,0 +1,30 @@
+// -*- C++ -*- (tell Emacs to use C++ mode for syntax highlighting)
+//
+// This spatial database specifies the distribution of material
+// properties. In this case, the material properties are uniform.
+//
+#SPATIAL.ascii 1
+SimpleDB {
+  num-values = 3 // number of material property values
+  value-names =  density vs vp // names of the material property values
+  value-units =  kg/m**3  m/s  m/s // units
+  num-locs = 5 // number of locations
+  data-dim = 3
+  space-dim = 3
+  cs-data = cartesian {
+    to-meters = 1.0
+    space-dim = 3
+  }
+}
+// Columns are
+// (1) x coordinate (m)
+// (2) y coordinate (m)
+// (3) z coordinate (m)
+// (4) density (kg/m^3)
+// (5) vs (m/s)
+// (6) vp (m/s)
+0.0 0.0 -60000 3500 4000 6750 
+0.0 0.0 -77500  3500 4000 6750
+0.0 0.0 -100000 3500  4000 6750 
+0.0 0.0 -120000 3500 4000 6750
+0.0 0.0 -160000 3500 4000 6750
