@@ -88,7 +88,7 @@ mesh volume all
 
 ##refine surface 163 164 162 165 166  numsplit 1 bias 1.0 depth 1 smooth
 ##refine surface 163 164 162 165 166  numsplit 1 bias 1.0 depth 1 smooth
-refine surface 143 144   numsplit 1 bias 1.0 depth 1 smooth
+refine surface 143 144   numsplit 2 bias 1.0 depth 1 smooth
 
 
 
@@ -152,6 +152,7 @@ nodeset 17 face_zpos
 nodeset 17 name "face_zpos"
 
 export mesh "ETliuchunyu_buried_tilt100km_no_anomaly.exo" dimension 3 overwrite
+
 
 
 
