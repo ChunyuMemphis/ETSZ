@@ -1,3 +1,5 @@
+# How the code works
+
 This is code working on Pylith to produce displacement and stress/strain in the ETSZ. 
 
 The important steps to reproduce the result are: 
@@ -21,6 +23,8 @@ Spatial database-------------------spatialdb
 input file-------------------------east_tn.cfg
 
 input file 2-----------------------pylithapp.cfg
+
+![test_image](./output_result/RTP.png)
 
 
 
