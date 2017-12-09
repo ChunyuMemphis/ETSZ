@@ -6,4 +6,4 @@ The " output_paper_40Mpa_No" is the result from a model with 40Mpa deviatoric st
 The " output_paper_40Mpa_5080km" is the result from a model with 50-80km low density anomaly, 40Mpa deviatorc stress in the whole model.
 
 The " output_60Mpa_No" is the result from the model with no anomaly, 60Mpa deviatoric stress.
-![Alt text](./RTP.png?raw=true "Optional Title")
+![Alt text](ETSZ/output_result/RTP.png?raw=true "Optional Title")
