@@ -24,7 +24,7 @@ input file-------------------------east_tn.cfg
 
 input file 2-----------------------pylithapp.cfg
 
-![test_image](./output_result/RTP.png)
+![test_image](./RTP.ps)
 
 
 
